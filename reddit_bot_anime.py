@@ -24,9 +24,9 @@ command = r"\\\[animebot\\\]\s*-synopsis\s+(.+)"
 ## Getting Synopsis
 def getAnimeName(anime_name):
     url = "https://api.jikan.moe/v4/anime?q={0}&limit=1".format(anime_name)
-    response = requests.get(url)
+    response = requests.get(url) ## response contains json data
     if response.status_code == 200:
-        fullAnimeData = response.json() #store json data in anime_data - Dict
+        fullAnimeData = response.json() #parse json data and convert it into Dict
         partAnimeData = fullAnimeData['data'][0] #Dict('data') -> List(0) -> Dict(partAnimeData)
         if type(partAnimeData) == dict:
             return partAnimeData['synopsis']
